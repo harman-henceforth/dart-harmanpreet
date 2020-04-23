@@ -29,9 +29,14 @@ export class CourseService {
     console.log(this.courses);
   }
   deleteCourse(id) {
-    this.courses = this.courses.filter((x) => {
+    this.courses = this.courses.filter((x, index) => {
+      console.log(index);
+      if (x.id === id) {
+        this.courses.splice(index, 1);
+      }
       return x.id != id;
     });
+    this.courses.push();
     console.log(this.courses);
   }
   searchFilter(keyword) {
