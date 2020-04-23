@@ -17,7 +17,7 @@ export class CourseRowComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  callParent(data) {
+  editCourse(data) {
     console.log(data);
     this.editEvent.next(data);
   }

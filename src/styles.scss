@@ -17,3 +17,6 @@ body {
     box-shadow: 0 0 0 0.01rem rgba($primary, 0.25) !important;
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

@@ -15,6 +15,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CourseListComponent } from "./course-list/course-list.component";
 import { CourseRowComponent } from "./course-row/course-row.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import * as $ from "jquery";
+import * as bootstrap from "bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     CourseListComponent,
     CourseRowComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, AlertModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, AlertModule, FormsModule, ReactiveFormsModule, NgbModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

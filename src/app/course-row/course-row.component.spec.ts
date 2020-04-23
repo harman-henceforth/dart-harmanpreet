@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CourseRowComponent } from './course-row.component';
+import { CourseRowComponent } from "./course-row.component";
 
-describe('CourseRowComponent', () => {
+describe("CourseRowComponent", () => {
   let component: CourseRowComponent;
   let fixture: ComponentFixture<CourseRowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseRowComponent ]
-    })
-    .compileComponents();
+      declarations: [CourseRowComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,17 @@ describe('CourseRowComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("should call edit course function", () => {
+    // expect(component).toBeTruthy();
+    let data: any = {};
+    component.editCourse(data);
+  });
+  it("should call deleteCourse course function", () => {
+    // expect(component).toBeTruthy();
+    let id = "123";
+    component.deleteCourse(id);
   });
 });

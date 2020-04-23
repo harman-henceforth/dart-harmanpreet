@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Courses list</h2>
 
-  <button type="button" class="btn btn-primary add-btn mb-2" (click)="openModal('add-course')">Add Course</button>
+  <button type="button" class="btn btn-primary add-btn mb-2" (click)="openModal(addCourseModal)">Add Course</button>
   <!-- <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p> -->
   <form>
     <div class="form-group">
@@ -182,3 +182,147 @@
     </div>
   </div>
 </div>
+
+<ng-template #addCourseModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+ 
+    <div class="modal-body">
+      <form [formGroup]="addEditForm">
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Title</label>
+          <input type="text" formControlName="title" class="form-control" id="recipient-name" />
+          <div *ngIf="f.title.errors" class="invalid-feedback">
+            <div *ngIf="submit && f.title.errors.required">
+              Please enter the title
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Duration</label>
+          <input
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+            type="text"
+            formControlName="duration"
+            class="form-control"
+            id="recipient-name"
+          />
+          <div *ngIf="f.duration.errors" class="invalid-feedback">
+            <div *ngIf="submit && f.duration.errors.required">
+              Please enter the duration
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Dureation Unit</label>
+          <input type="text" formControlName="duration_unit" class="form-control" id="recipient-name" />
+
+          <div *ngIf="f.duration_unit.errors" class="invalid-feedback">
+            <div *ngIf="submit && f.duration_unit.errors.required">
+              Please enter the duration unit
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Description</label>
+          <textarea formControlName="description" class="form-control" id="message-text"></textarea>
+          <div *ngIf="f.description.errors" class="invalid-feedback">
+            <div *ngIf="submit && f.description.errors.required">
+              Please enter the description
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addCourse()">
+      Save
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+<ng-template #editCourseModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <form [formGroup]="addEditForm">
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Title</label>
+      <input
+        placeholder="Enter title"
+        type="text"
+        title="Enter title"
+        formControlName="title"
+        class="form-control"
+        id="recipient-name"
+      />
+      <div *ngIf="f.title.errors" class="invalid-feedback">
+        <div *ngIf="submit && f.title.errors.required">
+          Please enter the title
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Duration</label>
+      <input
+        placeholder="Enter duration"
+        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+        type="text"
+        formControlName="duration"
+        class="form-control"
+        id="recipient-name"
+      />
+      <div *ngIf="f.duration.errors" class="invalid-feedback">
+        <div *ngIf="submit && f.duration.errors.required">
+          Please enter the duration
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">Dureation Unit</label>
+      <input
+        placeholder="Enter duration unit"
+        type="text"
+        formControlName="duration_unit"
+        class="form-control"
+        id="recipient-name"
+      />
+
+      <div *ngIf="f.duration_unit.errors" class="invalid-feedback">
+        <div *ngIf="submit && f.duration_unit.errors.required">
+          Please enter the duration unit
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message-text" class="col-form-label">Description</label>
+      <textarea
+        placeholder="Enter description"
+        formControlName="description"
+        class="form-control"
+        id="message-text"
+      ></textarea>
+      <div *ngIf="f.description.errors" class="invalid-feedback">
+        <div *ngIf="submit && f.description.errors.required">
+          Please enter the description
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="editCourse()">
+      Save
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>

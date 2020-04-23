@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Subject } from "rxjs";
 import { CourseService } from "./course.service";
 import { FormGroup, FormControl, FormBuilder, Validators, ValidationErrors } from "@angular/forms";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { AlertService } from "../_alert";
-declare var $;
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+// import * as $ from "jquery";
+// declare var $: any;
 @Component({
   selector: "app-course-list",
   templateUrl: "./course-list.component.html",
@@ -15,7 +17,13 @@ export class CourseListComponent implements OnInit {
   addEditForm: FormGroup;
   submit: boolean;
   search_keyword: any = "";
-  constructor(public apiService: CourseService, private fb: FormBuilder, public alertService: AlertService) {}
+  @ViewChild("editCourseModal", { static: true }) private editCourseModal;
+  constructor(
+    public apiService: CourseService,
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    public alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.getCourseList();
@@ -36,10 +44,10 @@ export class CourseListComponent implements OnInit {
     });
   }
   openModal(id: any, data?) {
-    console.log(id);
-    console.log(data);
+    this.modalService.open(id);
+
     this.createAddEditForm();
-    $("#" + id).modal("show");
+    // $("#" + id).modal("show");
   }
   openEditModal(data) {
     console.log(data);
@@ -49,7 +57,8 @@ export class CourseListComponent implements OnInit {
     this.addEditForm.patchValue({ duration_unit: data.duration_unit });
     this.addEditForm.patchValue({ description: data.description });
 
-    $("#edit-course").modal("show");
+    // $("#edit-course").modal("show");
+    this.modalService.open(this.editCourseModal);
   }
   getCourseList() {
     this.courses = this.apiService.getCourseList();
@@ -60,7 +69,9 @@ export class CourseListComponent implements OnInit {
     if (this.addEditForm.valid) {
       this.submit = false;
       this.apiService.editCourse(this.addEditForm.value);
-      $("#edit-course").modal("hide");
+      // $("#edit-course").modal("hide");
+      // $("#edit-course").modal("hide");
+      this.modalService.dismissAll();
       this.alertService.success("item has been updated");
     }
     setTimeout(() => {
@@ -75,10 +86,9 @@ export class CourseListComponent implements OnInit {
     if (this.addEditForm.valid) {
       this.submit = false;
       this.apiService.addCourse(this.addEditForm.value);
-      $("#add-course").modal("hide");
+      this.modalService.dismissAll();
       this.alertService.success("item has been added");
     }
-
     // this.apiService.getCourseList();
     console.log(this.courses);
   }
