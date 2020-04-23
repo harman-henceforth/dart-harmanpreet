@@ -1,0 +1,20 @@
+.add-btn {
+  float: right;
+}
+.header {
+  margin-right: 2rem;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.duration {
+  margin-left: 48px;
+}
+.action {
+  margin-left: 29rem;
+}
+.invalid-feedback {
+  display: block;
+}
+.table-header {
+  margin: 12px;
+}

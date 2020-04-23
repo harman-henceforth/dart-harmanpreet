@@ -1,0 +1,11 @@
+<tr width="90%" *ngFor="let course of courses; let i = index">
+  <td width="5%">{{ i + 1 }}</td>
+  <td width="10%">{{ course.title }}</td>
+  <td width="10%">{{ course.duration }}</td>
+  <td width="10%">{{ course.duration_unit }}</td>
+  <td width="50%">{{ course.description }}</td>
+  <td>
+    <button type="button" class="btn btn-primary mr-2" (click)="callParent(course)">Edit</button>
+    <button type="button" class="btn btn-danger" (click)="deleteCourse(course.id)">Delete</button>
+  </td>
+</tr>
